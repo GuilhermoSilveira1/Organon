@@ -9,6 +9,9 @@ Organization app
  - Tarefa pode se dividir em outras tarefas
  - Local para ver as tarefas que já foram concluídas
  - Recompensas por completar as subtarefas e tarefas maiores
+ - Adicionar mensagem no final quando finalizar as tarefas
+ - Limite de quantas tarefas podem ser feitas no dia
+ - Poder reagendar tarefas
 
 ## Stack
  - Python
