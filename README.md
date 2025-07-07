@@ -17,5 +17,10 @@ Organization app
 ## Stack
  - Python
  - Django
- - Tailwind CSS
  - PyWebView (Exibição do app)
+
+## APPs
+O app pomodoro é usado para mexer com o timer pomodoro, histórico, criação personalizada, etc
+O app task é usado para as coisas relacionado com as tarefas, como lista, criação, atualização, exclusão, etc
+O app reward é usado para as coisas relacionado com as recompensas, telas de parabéns, insignias, trofeus, recompensas, etc
+E o app home é usado para a tela principal, a inicial, assim como autenticação, e futuramente, as funções relacionadas com autenticar no drive, spotify, google calendar, etc
