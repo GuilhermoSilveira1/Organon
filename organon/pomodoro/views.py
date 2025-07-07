@@ -11,20 +11,19 @@ def pomodoro_timer(request):
         'timers': timers,
     })
 
-def add(request):
+def new_pomodoro(request):
     if request.method == "POST":
         form = PomodoroForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("pomodoro")
+            return redirect("pomodoro")  # redireciona para a tela do timer
     else:
         form = PomodoroForm()
-    timers = Timers.objects.all().order_by('-date')
-    return render(request, 'pomodoro/pomodoro_timer.html', {
-        'form': form,
-        'editable': True,
-        'timers': timers
+    
+    return render(request, 'pomodoro/new_pomodoro.html', {
+        'form': form
     })
+
 
 def delete(request, id):
     timer = get_object_or_404(Timers, id=id)

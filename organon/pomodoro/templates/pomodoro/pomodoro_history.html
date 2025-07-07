@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórico de Sessões</title>
+    <link rel="stylesheet" href="{% static 'pomodoro/css/pomodoro_history.css' %}">
+    <script src="{% static 'pomodoro/js/pomodoro_history.js' %}"></script>
+</head>
+<body>
+    <h1 id="main-title">Sessões realizadas</h1>
+    <div id="sessions">
+        {% for session in timers %}
+        <div>
+            <h3 class="session-title">{{ session.date }} - {{ session.weekday }}</h3>
+            <p>Número de sessões: {{ session.sessions }}</p>
+            <p>Tempo de foco: {{ session.focused_time }} minutos</p>
+            <p>Tempo de descanso: {{ session.break_time }} minutos</p>
+            <p>Categoria: {{ session.category }}</p>
+            <p>Notas: {{ session.notes }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

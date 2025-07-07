@@ -12,6 +12,7 @@ Organization app
  - Adicionar mensagem no final quando finalizar as tarefas
  - Limite de quantas tarefas podem ser feitas no dia
  - Poder reagendar tarefas
+ - Conexão com app de música, como Spotify
 
 ## Stack
  - Python

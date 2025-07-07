@@ -1,0 +1,8 @@
+#sessions {
+    display: flex;
+    padding: 10px;
+    border: 1px solid #2bdefd;
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    grid-auto-rows: 100px;
+}

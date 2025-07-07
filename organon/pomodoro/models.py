@@ -1,5 +1,4 @@
 from django.db import models
-import datetime
 
 class Timers(models.Model):
     date = models.DateField(auto_now_add=True)
