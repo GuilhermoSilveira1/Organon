@@ -23,4 +23,5 @@ Organization app
 O app pomodoro é usado para mexer com o timer pomodoro, histórico, criação personalizada, etc
 O app task é usado para as coisas relacionado com as tarefas, como lista, criação, atualização, exclusão, etc
 O app reward é usado para as coisas relacionado com as recompensas, telas de parabéns, insignias, trofeus, recompensas, etc
-E o app home é usado para a tela principal, a inicial, assim como autenticação, e futuramente, as funções relacionadas com autenticar no drive, spotify, google calendar, etc
+E o app home é usado para a tela inicial, mostrar mensagens e tarefas relevantes dos outros apps
+O app authentication vai ser usado para mexer com tudo relacionado com a autenticação, assim como autenticação em outros serviços, como autenticar no drive, spotify, google calendar, etc

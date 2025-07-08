@@ -26,6 +26,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pomodoro',
+    'home',
+    'authentication',
+    'reward',
+    'task',
 ]
 
 MIDDLEWARE = [
