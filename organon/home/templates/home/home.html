@@ -1,2 +1,32 @@
 {% load static %}
-<h1>teste</h1>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'home/css/styles.css' %}">
+    <script src="{% static 'home/js/scripts.js' %}"></script>
+</head>
+<body>
+    <nav id="nav-top-bar">
+        <a href="{% url 'pomodoro:new' %}" class="{% if request.path == '/pomodoro/new/' %}active{% endif %}">Pomodoro</a>
+        <a href="{% url 'home:home' %}" class="{% if request.path == '/' %}active{% endif %}">Home</a>
+        <!-- <a href="{% url 'task:list' %}" class="{% if request.path == '/task/list/' %}active{% endif %}">Tarefas</a> -->
+    </nav>
+
+    <div id="welcome-message">        
+        {% if user.is_authenticated %}
+            <h1>Bem-vindo, {{ user.username }}!</h1>
+        {% else %}
+            <p>Você não está logado.</p>
+            <p>Clique aqui para fazer login: <a href="{% url 'authentication:login' %}">Login</a></p>
+        {% endif %}
+    </div>
+
+    <h3>Quais tarefas vamos concluir hoje?</h3>
+    <div id="recent-tasks"></div>    
+</body>
+</html>
+

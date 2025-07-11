@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
 
+app_name = 'pomodoro'
+
 urlpatterns = [
  path('', views.pomodoro_timer, name='pomodoro'),
  path('new', views.new_pomodoro, name='new_pomodoro'),
