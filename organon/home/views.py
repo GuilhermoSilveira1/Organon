@@ -1,8 +1,7 @@
-from django.shortcuts import redirect
-from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
 
-def index(request):
+def home(request):
     if request.user.is_authenticated:
-        return redirect('home')  # ou qualquer view principal
+        return render(request, 'home/home.html')
     else:
         return redirect('authentication:login')
