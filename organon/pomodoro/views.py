@@ -2,21 +2,21 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Timers
 from .forms import PomodoroForm
 
-def pomodoro_timer(request):
-    timers = Timers.objects.all().order_by('-date')
-    form = PomodoroForm()
+def pomodoro_timer(request, timer_id):
+    timer = get_object_or_404(Timers, id=timer_id, user=request.user)
     return render(request, 'pomodoro/pomodoro_timer.html', {
-        'form': form,
-        'editable': False,
-        'timers': timers,
+        'timer': timer,
     })
 
 def new_pomodoro(request):
     if request.method == "POST":
         form = PomodoroForm(request.POST)
         if form.is_valid():
+            timer = form.save(commit=False)
+            timer.user = request.user
             form.save()
-            return redirect("pomodoro")  # redireciona para a tela do timer
+            return redirect('pomodoro:pomodoro', timer_id=timer.id)
+
     else:
         form = PomodoroForm()
     

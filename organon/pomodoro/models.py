@@ -1,6 +1,19 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.utils import timezone
+
+dias_semana = {
+    'Monday': 'Segunda-feira',
+    'Tuesday': 'Terça-feira',
+    'Wednesday': 'Quarta-feira',
+    'Thursday': 'Quinta-feira',
+    'Friday': 'Sexta-feira',
+    'Saturday': 'Sábado',
+    'Sunday': 'Domingo',
+}
 
 class Timers(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     date = models.DateField(auto_now_add=True)
     weekday = models.CharField(max_length=20, editable=False)
     sessions = models.IntegerField()
@@ -11,8 +24,6 @@ class Timers(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.weekday:
-            self.weekday = self.date.strftime('%A')  # Ex: 'Thursday'
+            dia_en = timezone.now().strftime('%A')
+            self.weekday = dias_semana.get(dia_en, dia_en)
         super().save(*args, **kwargs)
-
-    def __str__(self):
-        return f"{self.date} - {self.category}"

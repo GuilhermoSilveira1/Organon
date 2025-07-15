@@ -1,45 +1,35 @@
 {% load static %}
 <!DOCTYPE html>
-    <html lang="pt-BR">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Timer Pomodoro</title>
-        <link rel='stylesheet' href="{% static 'css/styles.css'%}">
-        <script src="{% static 'js/script.js' %}" defer></script>
-    </head>
-    <body>
-    <section class="navbar--section fw-bold">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Pomodoro Timer</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarNavAltMarkup"
-                        aria-controls="navbarNavAltMarkup" aria-expanded="false" 
-                        aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
-        </nav>
-    </section>
-
-    <section class="timer--section">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-lg-12 mt-5 h4 text-center">
-                    <p class="h2 text-center">Pomodoro</p>
-                    <div class="timer ">
-                        <span id="hours">00</span>:<span id="minutes">25</span>:<span 
-                                                          id="seconds">00</span>
-                    </div>
-
-                    <button class="btn btn-primary" onclick="startMainTimer()">Start</button>
-                    <button class="btn btn-primary" onclick="pauseTimer()">Pause</button>
-                    <button class="btn btn-primary" onclick="resetTimer()">Reset</button>
-                </div>
-            </div>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer</title>
+    <link rel="stylesheet" href="{% static 'pomodoro/css/pomodoro_timer.css' %}">
+    {% if timer %}
+    <script>
+        const focusedTime = {{ timer.focused_time }} * 60;
+        const breakTime = {{ timer.break_time }} * 60;
+        let sessionsRemaining = {{ timer.sessions }};
+    </script>
+    {% else %}
+    <script>
+        const focusedTime = 25 * 60;  // valor padrão
+        const breakTime = 5 * 60;
+        let sessionsRemaining = 1;
+    </script>
+    {% endif %}
+    <script src="{% static 'pomodoro/js/pomodoro_timer.js' %}" defer></script>
+</head>
+<body>
+    <div class="main">
+        <div id="status">Preparando...</div>
+        <div class="timer-circle" id="timer">00:00</div>
+        <div id="sessions">Sessões restantes: <span id="session-count"></span></div>
+        <div class="control-buttons">
+            <button onclick="togglePauseResume()">Pause</button>
+            <button onclick="restartTimer()">Restart</button>
         </div>
-    </section>    
-  </body>
+    </div>
+</body>
 </html>

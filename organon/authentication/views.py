@@ -12,7 +12,7 @@ def signup_view(request):
         else:
             User.objects.create_user(username=username, password=password)
             messages.success(request, 'Conta criada com sucesso!')
-            return redirect('login')
+            return redirect('authentication:login')
     return render(request, 'authentication/signup.html')
 
 def login_view(request):
@@ -22,7 +22,7 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('home')
+            return redirect('home:home')
         else:
             messages.error(request, 'Credenciais inválidas.')
     return render(request, 'authentication/login.html')
