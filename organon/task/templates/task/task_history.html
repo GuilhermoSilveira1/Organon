@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Histórico de Tarefas</title>
+</head>
+<body>
+    <h1>Histórico de Tarefas Concluídas</h1>
+
+    {% if tasks %}
+        <ul>
+            {% for task in tasks %}
+                <li>
+                    <strong>{{ task.title }}</strong> — Concluída em {{ task.updated_at|date:"d/m/Y H:i" }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Você ainda não concluiu nenhuma tarefa.</p>
+    {% endif %}
+
+    <a href="{% url 'task:tasks' %}">Voltar para tarefas</a>
+</body>
+</html>

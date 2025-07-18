@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ task.title }}</title>
+</head>
+<body>
+    <h1>{{ task.title }}</h1>
+    <p><strong>Descrição:</strong> {{ task.description }}</p>
+    <p><strong>Prazo:</strong> {{ task.due_date|date:"d/m/Y H:i" }}</p>
+    <p><strong>Status:</strong> {% if task.is_completed %}Concluída{% else %}Pendente{% endif %}</p>
+
+    <h3>Subtarefas</h3>
+    {% if task.subtasks.all %}
+        <ul>
+            {% for subtask in task.subtasks.all %}
+                <li>
+                    {{ subtask.title }}
+                    {% if subtask.is_completed %}(Concluída){% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Sem subtarefas.</p>
+    {% endif %}
+
+    <a href="{% url 'task:tasks' %}">Voltar para tarefas</a>
+</body>
+</html>

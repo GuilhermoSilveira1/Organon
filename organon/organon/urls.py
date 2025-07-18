@@ -4,7 +4,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls', namespace='home')),
-    # path('task/', include('task.urls')),
+    path('task/', include('task.urls', namespace='tasks')),
     path('auth/', include('authentication.urls', namespace='authentication')),
     path('pomodoro/', include('pomodoro.urls', namespace='pomodoro')),
     # path('reward/', include('reward.urls')),

@@ -13,6 +13,7 @@
     <nav id="nav-top-bar">
         <a href="{% url 'pomodoro:new' %}" class="{% if request.path == '/pomodoro/new/' %}active{% endif %}">Pomodoro</a>
         <a href="{% url 'home:home' %}" class="{% if request.path == '/' %}active{% endif %}">Home</a>
+        <a href="{% url 'task:tasks' %}" class="{% if request.path == '/tasks/' %}active{% endif %}">Tarefas</a>
     </nav>
 
     <div id="welcome-message">        
@@ -25,6 +26,13 @@
     </div>
 
     <h3>Quais tarefas vamos concluir hoje?</h3>
-    <div id="recent-tasks"></div>    
+    <div id="recent-tasks">
+        {% for task in tasks %}
+            <h3><a href="{% url 'task:task_detail' task.id %}">{{ task.title }}</a></h3>
+        {% empty %}
+            <p>Você ainda não tem tarefas recentes.</p>
+            <p>Gostaria de <a href="{% url 'task:new' %}">adicionar uma tarefa</a>?</p> 
+        {% endfor %}
+    </div>    
 </body>
 </html>

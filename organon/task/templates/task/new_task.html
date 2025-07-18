@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Nova Tarefa</title>
+</head>
+<body>
+    <h2>Nova Tarefa</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <h3>Subtarefas</h3>
+        {{ formset.management_form }}
+        {% for subform in formset %}
+            <div class="subtask-form">
+                {{ subform.as_p }}
+            </div>
+        {% endfor %}
+
+        <button type="submit">Salvar</button>
+    </form>
+
+    <a href="{% url 'task:tasks' %}">Voltar para tarefas</a>
+</body>
+</html>

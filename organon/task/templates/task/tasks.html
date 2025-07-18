@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarefas</title>
+</head>
+<body>
+    <h1>Minhas Tarefas</h1>
+
+    {% if tasks %}
+        {% for task in tasks %}
+            <div class="task">
+                <h3><a href="{% url 'task:task_detail' task.id %}">
+                    {{ task.title }}
+                </a></h3>
+                <p>{{ task.description }}</p>
+                <p>Prazo: {{ task.due_date|date:"d/m/Y H:i" }}</p>
+
+                <form method="POST" action="{% url 'task:complete_task' task.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Concluir</button>
+                </form>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Você ainda não tem tarefas.</p>
+        <a href="{% url 'task:new' %}">Criar nova tarefa</a>
+    {% endif %}
+</body>
+</html>
