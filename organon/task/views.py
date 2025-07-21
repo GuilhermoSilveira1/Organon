@@ -46,7 +46,7 @@ def task_detail(request, task_id):
 def delete(request, id):
     task = get_object_or_404(Task, id=id)
     task.delete()
-    return redirect("tasks")
+    return redirect("task:tasks")
 
 @login_required
 def history(request):

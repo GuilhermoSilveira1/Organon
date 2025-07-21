@@ -1,0 +1,7 @@
+<nav id="nav-top-bar" class="navbar">
+    <ul class="nav-links">
+        <li><a href="{% url 'home:home' %}" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
+        <li><a href="{% url 'pomodoro:new' %}" class="{% if request.path == '/pomodoro/new/' %}active{% endif %}">Pomodoro</a></li>
+        <li><a href="{% url 'task:tasks' %}" class="{% if request.path == '/tasks/' %}active{% endif %}">Tarefas</a></li>
+    </ul>
+</nav>

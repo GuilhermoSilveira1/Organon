@@ -1,5 +1,6 @@
 from pathlib import Path
 from django.contrib.messages import constants as messages
+import os
 
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
@@ -52,7 +53,7 @@ ROOT_URLCONF = 'organon.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -63,6 +64,14 @@ TEMPLATES = [
         },
     },
 ]
+
+# Diretórios onde o Django vai procurar arquivos estáticos durante o desenvolvimento
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+# Diretório onde os arquivos estáticos serão coletados para produção
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 WSGI_APPLICATION = 'organon.wsgi.application'
 
