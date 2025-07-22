@@ -1,27 +1,33 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <title>Nova Tarefa</title>
-</head>
-<body>
-    <h2>Nova Tarefa</h2>
+{% extends 'base.html' %}
+{% load static %}
 
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
+{% block title %}Nova Tarefa{% endblock %}
 
-        <h3>Subtarefas</h3>
-        {{ formset.management_form }}
-        {% for subform in formset %}
-            <div class="subtask-form">
-                {{ subform.as_p }}
-            </div>
-        {% endfor %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'task/css/new_task.css' %}">
+{% endblock %}
 
-        <button type="submit">Salvar</button>
-    </form>
+{% block extra_js %}
+<script src="{% static 'task/js/new_task.js' %}" defer></script>
+{% endblock %}
 
-    <a href="{% url 'task:tasks' %}">Voltar para tarefas</a>
-</body>
-</html>
+{% block content %}
+<h2>Nova Tarefa</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <h3>Subtarefas</h3>
+    {{ formset.management_form }}
+    {% for subform in formset %}
+        <div class="subtask-form">
+            {{ subform.as_p }}
+        </div>
+    {% endfor %}
+
+    <button type="submit">Salvar</button>
+</form>
+
+<a href="{% url 'task:tasks' %}">Voltar para tarefas</a>
+{% endblock %}

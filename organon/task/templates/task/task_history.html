@@ -1,24 +1,29 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <title>Histórico de Tarefas</title>
-</head>
-<body>
-    <h1>Histórico de Tarefas Concluídas</h1>
+{% extends 'base.html' %}
+{% load static %}
 
-    {% if tasks %}
-        <ul>
-            {% for task in tasks %}
-                <li>
-                    <strong>{{ task.title }}</strong> — Concluída em {{ task.updated_at|date:"d/m/Y H:i" }}
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>Você ainda não concluiu nenhuma tarefa.</p>
-    {% endif %}
+{% block title %}Histórico de propostas{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'task/css/task_detail.css' %}">
+{% endblock %}
 
-    <a href="{% url 'task:tasks' %}">Voltar para tarefas</a>
-</body>
-</html>
+{% block extra_js %}
+<script src="{% static 'task/js/task_detail.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+<h1>Histórico de Tarefas Concluídas</h1>
+
+{% if tasks %}
+    <ul>
+        {% for task in tasks %}
+            <li>
+                <strong>{{ task.title }}</strong> — Concluída em {{ task.updated_at|date:"d/m/Y H:i" }}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Você ainda não concluiu nenhuma tarefa.</p>
+{% endif %}
+
+<a href="{% url 'task:tasks' %}">Voltar para tarefas</a>
+{% endblock %}

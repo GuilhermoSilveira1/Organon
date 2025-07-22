@@ -1,5 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Formulário Pomodoro{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'pomodoro/css/new_pomodoro.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'pomodoro/js/new_pomodoro.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
 <form method="post">
   {% csrf_token %}
   {{ form.as_p }}
   <button type="submit">Iniciar</button>
 </form>
+{% endblock %}
