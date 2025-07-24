@@ -3,7 +3,8 @@ from .models import Task, Subtask
 from .forms import TaskForm, SubtaskForm
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
-from django.forms import inlineformset_factory
+from django.template.loader import render_to_string
+from django.http import JsonResponse
 
 @login_required
 def tasks(request): 
@@ -12,29 +13,28 @@ def tasks(request):
         'tasks': tasks
     })
 
+# View de nova tarefa
 @login_required
 def new_task(request):
-    SubtaskFormSet = inlineformset_factory(Task, Subtask, form=SubtaskForm, extra=1, can_delete=False)
-
     if request.method == 'POST':
         task_form = TaskForm(request.POST)
         if task_form.is_valid():
             task = task_form.save(commit=False)
             task.user = request.user
             task.save()
-
-            formset = SubtaskFormSet(request.POST, instance=task)
-            if formset.is_valid():
-                formset.save()
-                return redirect('tasks:tasks')
     else:
         task_form = TaskForm()
-        formset = SubtaskFormSet()
 
     return render(request, 'task/new_task.html', {
         'form': task_form,
-        'formset': formset
     })
+
+# View de nova subtarefa
+@login_required
+def new_subtask(request, task_id=None):
+    subtask_form = SubtaskForm()
+    html = render_to_string('task/partials/subtask_form.html', {'form': subtask_form})
+    return JsonResponse({'form_html': html})
 
 @login_required
 def task_detail(request, task_id):
@@ -61,5 +61,5 @@ def complete_task(request, task_id):
     task = get_object_or_404(Task, id=task_id, user=request.user)
     task.is_completed = True
     task.save()
-    return redirect('tasks:tasks')
+    return redirect('task:tasks')
 from django.forms import inlineformset_factory

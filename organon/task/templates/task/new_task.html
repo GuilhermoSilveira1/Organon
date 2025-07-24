@@ -13,19 +13,17 @@
 
 {% block content %}
 <h2>Nova Tarefa</h2>
-
 <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
 
-    <h3>Subtarefas</h3>
-    {{ formset.management_form }}
-    {% for subform in formset %}
-        <div class="subtask-form">
-            {{ subform.as_p }}
-        </div>
-    {% endfor %}
+    <div id="subtask-section" style="display: none;">
+        <h3>Subtarefas</h3>
+        <input type="hidden" name="subtask_set-TOTAL_FORMS" id="id_subtask_set-TOTAL_FORMS" value="0">
+        <div id="subtask-forms"></div>
+    </div>
 
+    <button type="button" id="add-subtask">Adicionar subtarefa</button>
     <button type="submit">Salvar</button>
 </form>
 

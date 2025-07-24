@@ -17,7 +17,7 @@
     <ul>
         {% for task in tasks %}
             <li>
-                <strong>{{ task.title }}</strong> — Concluída em {{ task.updated_at|date:"d/m/Y H:i" }}
+                <a href="{% url 'task:task_detail' task.id %}"><strong>{{ task.title }}</strong></a> — Concluída em {{ task.updated_at|date:"d/m/Y H:i" }}
             </li>
         {% endfor %}
     </ul>

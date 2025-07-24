@@ -28,6 +28,7 @@
             </form>
         </div>
     {% endfor %}
+    <a href="{% url 'task:new' %}">Criar nova tarefa</a>
 {% else %}
     <p>Você ainda não tem tarefas.</p>
     <a href="{% url 'task:new' %}">Criar nova tarefa</a>
