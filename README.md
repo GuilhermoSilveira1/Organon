@@ -1,27 +1,48 @@
 # Organon
-Organization app
+## Aplicativo de Organização Pessoal
 
-## Funcionalidades
- - Timer pomodoro
- - Painel de tarefas
- - Detalhe da tarefa
- - Criação, edição, exclusão, atualização de tarefa
- - Tarefa pode se dividir em outras tarefas
- - Local para ver as tarefas que já foram concluídas
- - Recompensas por completar as subtarefas e tarefas maiores
- - Adicionar mensagem no final quando finalizar as tarefas
- - Limite de quantas tarefas podem ser feitas no dia
- - Poder reagendar tarefas
- - Conexão com app de música, como Spotify
+Organon é um projeto pessoal e experimental, criado a partir do interesse em desenvolver uma ferramenta de organização simples, funcional e com aparência de aplicativo nativo. O foco principal está no uso do Django como base para toda a lógica e estrutura do app, mantendo a stack enxuta e acessível.
 
-## Stack
- - Python
- - Django
- - PyWebView (Exibição do app)
+# Objetivo do Projeto
+Criar um aplicativo desktop de organização pessoal com funcionalidades úteis como gerenciamento de tarefas, sistema de recompensas e integração com serviços externos. Tudo isso utilizando:
 
-## APPs
-O app pomodoro é usado para mexer com o timer pomodoro, histórico, criação personalizada, etc
-O app task é usado para as coisas relacionado com as tarefas, como lista, criação, atualização, exclusão, etc
-O app reward é usado para as coisas relacionado com as recompensas, telas de parabéns, insignias, trofeus, recompensas, etc
-E o app home é usado para a tela inicial, mostrar mensagens e tarefas relevantes dos outros apps
-O app authentication vai ser usado para mexer com tudo relacionado com a autenticação, assim como autenticação em outros serviços, como autenticar no drive, spotify, google calendar, etc
+Django para backend e frontend
+HTML, CSS e JavaScript para a interface
+PyWebView para transformar a aplicação web em um app desktop com aparência nativa
+
+💡 Embora o Electron tenha sido considerado, optou-se pelo PyWebView para evitar a necessidade de empacotar o Node.js, mantendo a simplicidade da stack.
+
+#🚀 Como Utilizar
+
+1 - Clone o repositório ou baixe o .zip:
+git clone https://github.com/seu-usuario/organon.git
+
+2 - Acesse a pasta do projeto:
+cd organon
+
+3 - Instale as dependências:
+Certifique-se de estar na mesma pasta onde está o arquivo requirements.txt, e execute:
+pip install -r requirements.txt
+
+4 - Execute o servidor Django:
+Navegue até a pasta onde está o manage.py e rode:
+
+Windows: python manage.py runserver
+Linux/Mac: python3 manage.py runserver
+
+5 - Acesse o app:
+Abra o navegador e vá até http://127.0.0.1:8000 para começar a usar o Organon.
+⚠️ O aplicativo ainda não está empacotado como um executável. Ele roda localmente via navegador por enquanto.
+
+# 🧩 Funcionalidades Atuais e Futuras
+✅ Timer Pomodoro
+✅ Painel de Tarefas
+🔜 Sistema de Recompensas por conclusão de tarefas e subtarefas
+🔜 Integração com Spotify (para controle de música)
+🔜 Backup em Nuvem via Google Drive
+
+# 🛠️ Tecnologias Utilizadas
+Python
+Django
+HTML, CSS, JavaScript
+PyWebView (para exibição como app desktop)
