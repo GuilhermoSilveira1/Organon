@@ -42,7 +42,7 @@ Abra o navegador e vá até http://127.0.0.1:8000 para começar a usar o Organon
 - 🔜 Backup em Nuvem via Google Drive
 
 # 🛠️ Tecnologias Utilizadas
-Python
-Django
-HTML, CSS, JavaScript
-PyWebView (para exibição como app desktop)
+- Python
+- Django
+- HTML, CSS, JavaScript
+- PyWebView (para exibição como app desktop)
