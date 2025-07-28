@@ -12,7 +12,7 @@ PyWebView para transformar a aplicação web em um app desktop com aparência na
 
 💡 Embora o Electron tenha sido considerado, optou-se pelo PyWebView para evitar a necessidade de empacotar o Node.js, mantendo a simplicidade da stack.
 
-#🚀 Como Utilizar
+# 🚀 Como Utilizar
 
 1 - Clone o repositório ou baixe o .zip:
 git clone https://github.com/seu-usuario/organon.git
