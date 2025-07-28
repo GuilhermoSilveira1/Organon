@@ -32,14 +32,14 @@ Linux/Mac: python3 manage.py runserver
 
 5 - Acesse o app:
 Abra o navegador e vá até http://127.0.0.1:8000 para começar a usar o Organon.
-⚠️ O aplicativo ainda não está empacotado como um executável. Ele roda localmente via navegador por enquanto.
+- ⚠️ O aplicativo ainda não está empacotado como um executável. Ele roda localmente via navegador por enquanto.
 
 # 🧩 Funcionalidades Atuais e Futuras
-✅ Timer Pomodoro
-✅ Painel de Tarefas
-🔜 Sistema de Recompensas por conclusão de tarefas e subtarefas
-🔜 Integração com Spotify (para controle de música)
-🔜 Backup em Nuvem via Google Drive
+- ✅ Timer Pomodoro
+- ✅ Painel de Tarefas
+- 🔜 Sistema de Recompensas por conclusão de tarefas e subtarefas
+- 🔜 Integração com Spotify (para controle de música)
+- 🔜 Backup em Nuvem via Google Drive
 
 # 🛠️ Tecnologias Utilizadas
 Python
