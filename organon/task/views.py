@@ -62,4 +62,3 @@ def complete_task(request, task_id):
     task.is_completed = True
     task.save()
     return redirect('task:tasks')
-from django.forms import inlineformset_factory

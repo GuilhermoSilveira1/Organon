@@ -7,5 +7,5 @@ urlpatterns = [
     path('task/', include('task.urls', namespace='task')),
     path('auth/', include('authentication.urls', namespace='authentication')),
     path('pomodoro/', include('pomodoro.urls', namespace='pomodoro')),
-    # path('reward/', include('reward.urls')),
+    path('reward/', include('reward.urls', namespace='reward')),
 ]
