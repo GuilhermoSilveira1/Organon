@@ -18,10 +18,17 @@
 
 <h2>Recompensas</h2>
 
-{% for reward in rewards %}
-    <h3>{{ reward.description }}</h3>
-    <a href="{% url 'reward:used_reward' reward.id %}">Utilizar recompensa</a>
-{% endfor %}
+    {% for reward in rewards %}
+        <h3>{{ reward.description }}</h3>
+        <form action="{% url 'reward:used_reward' reward.id %}" method="post" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit">Utilizar recompensa</button>
+        </form>
+    {% empty %}
+        <h3>Você não possui nenhuma recompensa</h3>
+        <a href="{% url 'task:tasks' %}">Ir para tarefas</a>
+        <a href="{% url 'pomodoro:new' %}">Iniciar um novo timer</a>
+    {% endfor %}
 
 <a href="{% url 'reward:reward_history' %}">Histórico de Recompensas</a>
 {% endblock %}

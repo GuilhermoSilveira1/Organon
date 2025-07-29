@@ -48,19 +48,20 @@ def rewards(request):
         return redirect("login")
 
     rewards = Reward.objects.filter(user=request.user, used=False).order_by("-created_at")
-    return render(request, "rewards/rewards.html", {"rewards": rewards})
+    return render(request, "reward/rewards.html", {"rewards": rewards})
 
 @login_required
 @require_POST
 def used_reward(request, reward_id):
     reward = get_object_or_404(Reward, id=reward_id, user=request.user)
-    reward.is_completed = True
+    reward.used = True
+    # reward.used_at adicionar depois a funcionalidade de mostrar data e horário que foi usado
     reward.save()
     return redirect('reward:rewards')
 
 @login_required
 def history(request):
-    rewards = Reward.objects.filter(user=request.user, is_completed=True).order_by('-updated_at')
+    rewards = Reward.objects.filter(user=request.user, used=True)
     return render(request, 'reward/reward_history.html', {
         'rewards': rewards
     })

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Recompensas{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'reward/css/rewards_history.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'reward/js/rewards_history.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+
+<!-- A variável é: rewards -->
+
+<h2>Histórico de Recompensas</h2>
+
+{% if rewards == empty %}
+    <h3>Você ainda não possui nenhuma recompensa no histórico</h3>
+    <a href="{% url 'reward:rewards' %}">Ir para Recompensas</a>
+    <a href="{% url 'task:tasks' %}">Ir para tarefas</a>
+{% else %}
+    {% for reward in rewards %}
+        <h3>{{ reward.description }}</h3>
+    {% endfor %}
+{% endif %}
+
+<a href="{% url 'reward:rewards' %}">Lista de Recompensas</a>
+{% endblock %}
