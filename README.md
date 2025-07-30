@@ -34,6 +34,10 @@ Linux/Mac: python3 manage.py runserver
 Abra o navegador e vá até http://127.0.0.1:8000 para começar a usar o Organon.
 - ⚠️ O aplicativo ainda não está empacotado como um executável. Ele roda localmente via navegador por enquanto.
 
+# Sugestões
+Caso tenha alguma sugestão ou tenha percebido um bug ou qualquer outra coisa, se sinta à vontade para abrir uma nova issue sobre o assunto.
+Vou ler e ver se é viável/faz sentido para o projeto, e irei ajustar.
+
 # 🧩 Funcionalidades Atuais e Futuras
 - ✅ Timer Pomodoro
 - ✅ Painel de Tarefas
