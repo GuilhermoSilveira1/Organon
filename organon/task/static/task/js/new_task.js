@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     const addButton = document.getElementById('add-subtask');
     const formContainer = document.getElementById('subtask-forms');
-    const totalForms = document.getElementById('id_subtask_set-TOTAL_FORMS');
 
     function updateRemoveButtons() {
         formContainer.querySelectorAll('.remove-subtask').forEach(button => {

@@ -62,3 +62,11 @@ def complete_task(request, task_id):
     task.is_completed = True
     task.save()
     return redirect('task:tasks')
+
+@login_required
+@require_POST
+def complete_subtask(request, subtask_id):
+    subtask = get_object_or_404(Subtask, id=subtask_id, user=request.user)
+    subtask.is_completed = True
+    subtask.save()
+    return redirect('task:tasks')

@@ -1,4 +1,7 @@
-<div class="subtask-form">
-    {{ form.as_p }}
-    <button type="button" class="remove-subtask">Remover</button>
-</div>
+<form method="POST" action="{% url 'task:complete_subtask' subtask.id %}">
+    <div class="subtask-form">
+        {{ form.as_p }}
+        <button type="button" class="remove-subtask">Remover</button>
+    </div>
+    <button type="submit">Concluir</button>
+</form>
