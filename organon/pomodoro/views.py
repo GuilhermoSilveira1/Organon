@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Timers
 from .forms import PomodoroForm
+from django.http import JsonResponse
 
 def pomodoro_timer(request, timer_id):
     timer = get_object_or_404(Timers, id=timer_id, user=request.user)
@@ -24,7 +25,6 @@ def new_pomodoro(request):
         'form': form
     })
 
-
 def delete(request, id):
     timer = get_object_or_404(Timers, id=id)
     timer.delete()
@@ -34,4 +34,16 @@ def history(request):
     timers = Timers.objects.all().order_by('-date')
     return render(request, 'pomodoro/pomodoro_history.html', {
         'timers': timers
+    })
+
+def pomodoro_api(request, timer_id):
+    timer = get_object_or_404(Timers, id=timer_id, user=request.user)
+    return JsonResponse({
+        "id": timer.id,
+        "sessions": timer.sessions,
+        "focused_time": timer.focused_time,
+        "break_time": timer.break_time,
+        "category": timer.category,
+        "notes": timer.notes,
+        "weekday": timer.weekday,
     })

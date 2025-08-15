@@ -11,24 +11,10 @@
 <script src="{% static 'pomodoro/js/pomodoro_timer.js' %}" defer></script>
 {% endblock %}
 
-{% if timer %}
-<script>
-    const focusedTime = {{ timer.focused_time }} * 60;
-    const breakTime = {{ timer.break_time }} * 60;
-    let sessionsRemaining = {{ timer.sessions }};
-</script>
-{% else %}
-<script>
-    const focusedTime = 25 * 60;  // valor padrão
-    const breakTime = 5 * 60;
-    let sessionsRemaining = 1;
-</script>
-{% endif %}
-
 {% block content %}
 <div class="main">
     <div id="status">Preparando...</div>
-    <div class="timer-circle" id="timer">00:00</div>
+    <div class="timer-circle" id="timer" data-timer-id="{{ timer.id }}">00:00</div>
     <div id="sessions">Sessões restantes: <span id="session-count"></span></div>
     <div class="control-buttons">
         <button onclick="togglePauseResume()">Pause</button>
