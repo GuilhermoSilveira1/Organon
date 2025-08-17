@@ -17,8 +17,8 @@ class Timers(models.Model):
     date = models.DateField(auto_now_add=True)
     weekday = models.CharField(max_length=20, editable=False)
     sessions = models.IntegerField()
-    focused_time = models.IntegerField(help_text="Tempo de foco em minutos")
-    break_time = models.IntegerField(help_text="Tempo de descanso em minutos")
+    focused_time = models.IntegerField()
+    break_time = models.IntegerField()
     category = models.CharField(max_length=50)
     notes = models.CharField(max_length=250, blank=True)
 

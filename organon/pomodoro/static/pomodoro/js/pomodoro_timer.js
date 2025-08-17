@@ -1,53 +1,68 @@
-async function fetchTimerData(timerId) {
+const timerEl = document.getElementById("timer");
+const statusEl = document.getElementById("status");
+const sessionCountEl = document.getElementById("session-count");
+
+let focusedTime, breakTime;
+let intervalId;
+
+// Buscar dados do timer
+async function fetchTimerData(id) {
     try {
-        const response = await fetch(`/get-timer/${timerId}`);
-        if (!response.ok) throw new Error(`Erro ao buscar dados: ${response.status}`);
-        return await response.json();
-    } catch (error) {
-        console.error("Erro na requisição:", error);
+        const res = await fetch(`/pomodoro/api/${id}`, {
+            headers: { 'Accept': 'application/json' }
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return await res.json();
+    } catch (e) {
+        console.error("Erro na requisição:", e);
+        statusEl.textContent = "Erro ao carregar dados.";
         return null;
     }
 }
 
-// Atualiza o UI para modo Foco
-function displayFocusMode(sessionsRemaining, focusedTime) {
-    const status = document.getElementById("status");
-    const timerElement = document.getElementById("timer");
-    const sessionsElement = document.getElementById("session-count");
-
-    status.innerHTML = "Está na hora de focar!";
-    timerElement.innerHTML = focusedTime;
-    sessionsElement.innerHTML = sessionsRemaining;
+function renderTimer(segundos, mensagem) {
+    const minutos = Math.floor(segundos / 60);
+    const seg = segundos % 60;
+    timerEl.textContent = 
+        String(minutos).padStart(2, "0") + ":" + String(seg).padStart(2, "0");
+    sessionCountEl.textContent = mensagem;
 }
 
-// Atualiza o UI para modo Pausa
-function displayBreakMode(sessionsRemaining, breakTime) {
-    const status = document.getElementById("status");
-    const timerElement = document.getElementById("timer");
-    const sessionsElement = document.getElementById("sessions-count");
-
-    status.innerHTML = "Recarregando as energias!";
-    timerElement.innerHTML = breakTime;
-    sessionsElement.innerHTML = sessionsRemaining;
+function startFocus() {
+    statusEl.textContent = "Foco!";
+    intervalId = setInterval(() => {
+        focusedTime--;
+        if (focusedTime < 0) {
+            clearInterval(intervalId);
+            startBreak();
+        } else {
+            renderTimer(focusedTime, "Está na hora de focar!");
+        }
+    }, 1000);
 }
 
-// Controla a lógica do timer
-async function loadTimer(timerId) {
+function startBreak() {
+    statusEl.textContent = "Descanso!";
+    intervalId = setInterval(() => {
+        breakTime--;
+        if (breakTime < 0) {
+            clearInterval(intervalId);
+            startFocus();
+        } else {
+            renderTimer(breakTime, "Recarregando as energias...");
+        }
+    }, 1000);
+}
+
+async function initTimer() {
+    const timerId = document.getElementById("timer").dataset.timerId;
     const dados = await fetchTimerData(timerId);
     if (!dados) return;
 
-    // Exibe dados iniciais
-    displayFocusMode(dados.focused_time);
+    focusedTime = dados.focused_time * 60;
+    breakTime = dados.break_time * 60;
 
-    // Exemplo: caso queira alternar depois
-    // displayBreakMode(dados.sessions - 1, dados.break_time);
-    displayBreakMode(dados.sessions - 1, dados.break_time)
+    startFocus();
 }
 
-// Inicializa o script
-document.addEventListener("DOMContentLoaded", () => {
-    const timerElement = document.getElementById("timer");
-    if (timerElement && timerElement.dataset.timerId) {
-        loadTimer(timerElement.dataset.timerId);
-    }
-});
+initTimer();

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Timers
 from .forms import PomodoroForm
 from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
 
 def pomodoro_timer(request, timer_id):
     timer = get_object_or_404(Timers, id=timer_id, user=request.user)
@@ -36,13 +37,14 @@ def history(request):
         'timers': timers
     })
 
+@login_required
 def pomodoro_api(request, timer_id):
     timer = get_object_or_404(Timers, id=timer_id, user=request.user)
     return JsonResponse({
         "id": timer.id,
         "sessions": timer.sessions,
-        "focused_time": timer.focused_time,
-        "break_time": timer.break_time,
+        "focused_time": timer.focused_time,  # em minutos
+        "break_time": timer.break_time,      # em minutos
         "category": timer.category,
         "notes": timer.notes,
         "weekday": timer.weekday,
