@@ -2,11 +2,13 @@
 const timerEl = document.getElementById("timer");
 const statusEl = document.getElementById("status");
 const sessionCountEl = document.getElementById("session-count");
+const playPauseBtn = document.getElementById("play-pause");
 
 // Variáveis de controle
 let focusedTime, breakTime, sessionsLeft;
 let internalFocusedTime, internalBreakTime;
 let intervalId;
+let isPaused = false;
 
 // Atualiza a interface do usuário
 function updateUI({ statusMsg = "", timerSeconds = 0, sessions = null }) {
@@ -44,12 +46,14 @@ function startFocus() {
     updateUI({ statusMsg: "Está na hora de focar!", timerSeconds: internalFocusedTime, sessions: sessionsLeft });
 
     intervalId = setInterval(() => {
-        internalFocusedTime--;
-        if (internalFocusedTime < 0) {
-            clearInterval(intervalId);
-            startBreak();
-        } else {
-            updateUI({ timerSeconds: internalFocusedTime });
+        if (!isPaused) {
+            internalFocusedTime--;
+            if (internalFocusedTime < 0) {
+                clearInterval(intervalId);
+                startBreak();
+            } else {
+                updateUI({ timerSeconds: internalFocusedTime });
+            }
         }
     }, 1000);
 }
@@ -60,21 +64,29 @@ function startBreak() {
     updateUI({ statusMsg: "Recarregando as energias...", timerSeconds: internalBreakTime, sessions: sessionsLeft });
 
     intervalId = setInterval(() => {
-        internalBreakTime--;
-        if (internalBreakTime < 0) {
-            clearInterval(intervalId);
-            sessionsLeft--;
-            if (sessionsLeft > 0) {
-                startFocus();
+        if (!isPaused) {
+            internalBreakTime--;
+            if (internalBreakTime < 0) {
+                clearInterval(intervalId);
+                sessionsLeft--;
+                if (sessionsLeft > 0) {
+                    startFocus();
+                } else {
+                    updateUI({ statusMsg: "Sessões concluídas! Parabéns!", timerSeconds: 0, sessions: 0 });
+                }
             } else {
-                updateUI({ statusMsg: "Sessões concluídas! Parabéns!", timerSeconds: 0, sessions: 0 });
-                // Aqui pode entrar a lógica de recompensa
+                updateUI({ timerSeconds: internalBreakTime });
             }
-        } else {
-            updateUI({ timerSeconds: internalBreakTime });
         }
     }, 1000);
 }
+
+// Lógica do botão play/pause
+playPauseBtn.textContent = "⏸️"; // Começa como "Pause"
+playPauseBtn.addEventListener("click", () => {
+    isPaused = !isPaused;
+    playPauseBtn.textContent = isPaused ? "▶️" : "⏸️";
+});
 
 // Inicializa o timer ao carregar a página
 document.addEventListener('DOMContentLoaded', async () => {

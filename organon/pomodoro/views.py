@@ -3,6 +3,8 @@ from .models import Timers
 from .forms import PomodoroForm
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 def pomodoro_timer(request, timer_id):
     timer = get_object_or_404(Timers, id=timer_id, user=request.user)
