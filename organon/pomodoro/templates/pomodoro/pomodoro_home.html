@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home Pomodoro{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'pomodoro/css/pomodoro_home.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'pomodoro/js/pomodoro_home.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+<h1 id="main-title">Home Pomodoro</h1>
+
+<a href="{% url 'pomodoro:new' %}">Iniciar uma nova sessão</a>
+<a href="{% url 'pomodoro:history' %}">Ver histórico de sessões</a>
+{% endblock %}

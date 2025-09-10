@@ -3,14 +3,10 @@ from .models import Timers
 from .forms import PomodoroForm
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
-from django.views.decorators.csrf import csrf_exempt
-import json
 
-def pomodoro_timer(request, timer_id):
-    timer = get_object_or_404(Timers, id=timer_id, user=request.user)
-    return render(request, 'pomodoro/pomodoro_timer.html', {
-        'timer': timer,
-    })
+@login_required
+def home(request):
+    return render(request, 'pomodoro/pomodoro_home.html')
 
 def new_pomodoro(request):
     if request.method == "POST":
@@ -37,6 +33,12 @@ def history(request):
     timers = Timers.objects.all().order_by('-date')
     return render(request, 'pomodoro/pomodoro_history.html', {
         'timers': timers
+    })
+
+def pomodoro_timer(request, timer_id):
+    timer = get_object_or_404(Timers, id=timer_id, user=request.user)
+    return render(request, 'pomodoro/pomodoro_timer.html', {
+        'timer': timer,
     })
 
 @login_required

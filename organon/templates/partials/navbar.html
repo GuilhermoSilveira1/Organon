@@ -4,7 +4,7 @@
             <a href="{% url 'home:home' %}" class="{% if request.resolver_match.namespace == 'home' %}active{% endif %}">Home</a>
         </li>
         <li>
-            <a href="{% url 'pomodoro:new' %}" class="{% if request.resolver_match.namespace == 'pomodoro' %}active{% endif %}">Pomodoro</a>
+            <a href="{% url 'pomodoro:home' %}" class="{% if request.resolver_match.namespace == 'pomodoro' %}active{% endif %}">Pomodoro</a>
         </li>
         <li>
             <a href="{% url 'task:tasks' %}" class="{% if request.resolver_match.namespace == 'task' %}active{% endif %}">Tarefas</a>
