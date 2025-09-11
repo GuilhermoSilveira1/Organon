@@ -10,7 +10,7 @@
             <a href="{% url 'task:tasks' %}" class="{% if request.resolver_match.namespace == 'task' %}active{% endif %}">Tarefas</a>
         </li>
         <li>
-            <a href="{% url 'reward:rewards' %}" class="{% if request.resolver_match.namespace == 'task' %}active{% endif %}">Recompensas</a>
+            <a href="{% url 'reward:rewards' %}" class="{% if request.resolver_match.namespace == 'reward' %}active{% endif %}">Recompensas</a>
         </li>
     </ul>
 </nav>
