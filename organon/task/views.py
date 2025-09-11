@@ -69,4 +69,6 @@ def complete_subtask(request, subtask_id):
     subtask = get_object_or_404(Subtask, id=subtask_id, user=request.user)
     subtask.is_completed = True
     subtask.save()
-    return redirect('task:tasks')
+    return render(request, 'task/task_detail.html', {
+    'task': subtask.task,
+    })
