@@ -29,8 +29,10 @@
         </div>
     {% endfor %}
     <a href="{% url 'task:new' %}">Criar nova tarefa</a>
+    <a href="{% url 'task:history' %}">Histórico de tarefas concluídas</a>
 {% else %}
-    <p>Você ainda não tem tarefas.</p>
+    <p>Você não possui tarefas.</p>
     <a href="{% url 'task:new' %}">Criar nova tarefa</a>
+    <a href="{% url 'task:history' %}">Histórico de tarefas concluídas</a>
 {% endif %}
 {% endblock %}
